@@ -1,0 +1,446 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ── Strict monochrome palette ── */
+  --color-white: #FFFFFF;
+  --color-offwhite: #F5F5F5;
+  --color-charcoal: #1A1A1A;
+  --color-black: #000000;
+
+  /* ── Semantic aliases ── */
+  --color-bg: #FFFFFF;
+  --color-text-primary: #000000;
+  --color-text-secondary: #1A1A1A;
+  --color-text-muted: #999999;
+  --color-border: #000000;
+  --color-border-light: #E0E0E0;
+}
+
+/* ── Reset & base ────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-white);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Ambient dot-grid background ─────────── */
+.dot-grid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #d4d4d4 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.5;
+}
+
+/* ── Workspace panel ─────────────────────── */
+.workspace {
+  background: var(--color-white);
+  border: 1px solid var(--color-black);
+}
+
+/* ── Pill toggle (mode switcher) ─────────── */
+.pill-toggle {
+  display: inline-flex;
+  gap: 0;
+  padding: 4px;
+  border: 1px solid var(--color-black);
+  background: var(--color-white);
+}
+
+.pill-toggle button {
+  padding: 8px 22px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: var(--color-charcoal);
+  background: transparent;
+}
+
+.pill-toggle button.active {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.pill-toggle button:not(.active):hover {
+  background: var(--color-offwhite);
+  color: var(--color-black);
+}
+
+/* ── Primary button (solid black block) ──── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 32px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  font-family: var(--font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 2px solid var(--color-black);
+  cursor: pointer;
+  color: var(--color-white);
+  background: var(--color-black);
+  transition: all 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: var(--color-white);
+  color: var(--color-black);
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 var(--color-black);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn-primary:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-primary.success {
+  background: var(--color-white);
+  color: var(--color-black);
+  border-color: var(--color-black);
+  pointer-events: none;
+}
+
+/* ── Secondary button ────────────────────── */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  font-weight: 500;
+  font-size: 0.8rem;
+  font-family: var(--font-sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-black);
+  cursor: pointer;
+  color: var(--color-charcoal);
+  background: var(--color-white);
+  transition: all 0.15s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+/* ── Dropzone ────────────────────────────── */
+.dropzone {
+  border: 1px dashed var(--color-black);
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  background: var(--color-white);
+  position: relative;
+}
+
+.dropzone:hover {
+  background: var(--color-offwhite);
+  border-width: 2px;
+}
+
+.dropzone.drag-active {
+  border-style: solid;
+  border-width: 2px;
+  background: var(--color-offwhite);
+}
+
+.dropzone.has-file {
+  border-style: solid;
+  border-color: var(--color-black);
+  background: var(--color-white);
+}
+
+.dropzone .preview-img {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.dropzone:hover .preview-img,
+.dropzone .preview-img:hover {
+  filter: grayscale(0%);
+}
+
+/* ── Capacity bar ────────────────────────── */
+.capacity-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--color-offwhite);
+  border: 1px solid var(--color-border-light);
+  overflow: hidden;
+}
+
+.capacity-bar-fill {
+  height: 100%;
+  background: var(--color-black);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.capacity-bar-fill.overflow {
+  background: var(--color-black);
+}
+
+/* ── Input fields ────────────────────────── */
+.input-field {
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-bottom: 1px solid var(--color-black);
+  background: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  transition: border-width 0.15s ease;
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+.input-field:focus {
+  border-bottom-width: 2px;
+}
+
+textarea.input-field {
+  resize: vertical;
+  min-height: 120px;
+  padding: 12px 0;
+  border: 1px solid var(--color-black);
+  padding: 16px;
+  font-family: var(--font-mono);
+}
+
+textarea.input-field:focus {
+  border-width: 2px;
+}
+
+/* ── Divider ─────────────────────────────── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border-light);
+  margin: 1.5rem 0;
+}
+
+/* ── Label ───────────────────────────────── */
+.label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-black);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-sans);
+}
+
+/* ── Divider ─────────────────────────────── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-black);
+  margin: 0;
+}
+
+/* ── Result panel ────────────────────────── */
+.result-panel {
+  padding: 1.5rem;
+  border: 1px solid var(--color-black);
+  background: var(--color-white);
+}
+
+.result-panel.error {
+  border-width: 2px;
+}
+
+/* ── Steganalysis canvas viewer ──────────── */
+.canvas-viewer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.canvas-viewer canvas {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-black);
+}
+
+/* ── Shake animation (error feedback) ────── */
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-4px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* ── Typewriter animation ────────────────── */
+@keyframes typewriter-blink {
+
+  0%,
+  50% {
+    border-right-color: var(--color-black);
+  }
+
+  51%,
+  100% {
+    border-right-color: transparent;
+  }
+}
+
+.typewriter {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  border-right: 2px solid var(--color-black);
+  animation: typewriter-blink 1s steps(1) infinite;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── Processing text cycle ───────────────── */
+@keyframes pulse-text {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.processing-text {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  animation: pulse-text 1.2s ease-in-out infinite;
+}
+
+/* ── Range slider (bit-plane) ────────────── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: var(--color-black);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--color-black);
+  border: 2px solid var(--color-white);
+  cursor: pointer;
+  box-shadow: 0 0 0 1px var(--color-black);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--color-black);
+  border: 2px solid var(--color-white);
+  cursor: pointer;
+  box-shadow: 0 0 0 1px var(--color-black);
+}
+
+/* ── Checkbox ────────────────────────────── */
+input[type="checkbox"] {
+  accent-color: var(--color-black);
+}
+
+/* ── Scrollbar ───────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-white);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-charcoal);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-black);
+}
+
+/* ── Responsive ──────────────────────────── */
+@media (max-width: 768px) {
+  .canvas-viewer {
+    grid-template-columns: 1fr;
+  }
+
+  .pill-toggle button {
+    padding: 6px 14px;
+    font-size: 0.7rem;
+  }
+}
