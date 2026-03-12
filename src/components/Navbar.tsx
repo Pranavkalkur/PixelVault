@@ -15,16 +15,7 @@ const modes: { value: AppMode; label: string }[] = [
 
 const Navbar: React.FC<NavbarProps> = ({ mode, onModeChange }) => (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black">
-        <div
-            style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr auto 1fr',
-                alignItems: 'center',
-                maxWidth: '72rem',
-                margin: '0 auto',
-                padding: '1rem 2rem',
-            }}
-        >
+        <div className="flex flex-col sm:grid sm:grid-cols-[1fr_auto_1fr] items-center max-w-7xl mx-auto px-4 sm:px-8 py-3 sm:py-4 gap-4 sm:gap-0">
             {/* ── Col 1: Brand (left) ── */}
             <div className="select-none flex items-center gap-2">
                 <svg

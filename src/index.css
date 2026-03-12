@@ -443,4 +443,8 @@ input[type="checkbox"] {
     padding: 6px 14px;
     font-size: 0.7rem;
   }
+
+  .dropzone {
+    padding: 2rem 1rem;
+  }
 }

@@ -14,7 +14,7 @@ function App() {
       <Navbar mode={mode} onModeChange={setMode} />
 
       {/* ── Main workspace ───────────────────── */}
-      <main className="relative z-10 flex items-start justify-center min-h-screen pb-16 px-4" style={{ paddingTop: '120px' }}>
+      <main className="relative z-10 flex items-start justify-center min-h-screen pb-16 px-4 pt-[150px] sm:pt-[120px]">
         <div className="w-full max-w-2xl">
           {/* ── Panel title ──────── */}
           <h1 className="text-3xl sm:text-4xl font-black tracking-[-0.03em] text-black mb-2">
