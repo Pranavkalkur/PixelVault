@@ -99,10 +99,10 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 14px 32px;
+  gap: 8px;
+  padding: 12px 24px;
   font-weight: 700;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-family: var(--font-sans);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -165,7 +165,7 @@ body {
 /* ── Dropzone ────────────────────────────── */
 .dropzone {
   border: 1px dashed var(--color-black);
-  padding: 3rem 2rem;
+  padding: 2.5rem 1.5rem;
   text-align: center;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -267,12 +267,12 @@ textarea.input-field:focus {
 /* ── Label ───────────────────────────────── */
 .label {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--color-black);
   margin-bottom: 8px;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   font-family: var(--font-sans);
 }
 
@@ -285,7 +285,7 @@ textarea.input-field:focus {
 
 /* ── Result panel ────────────────────────── */
 .result-panel {
-  padding: 1.5rem;
+  padding: 1rem 1.25rem;
   border: 1px solid var(--color-black);
   background: var(--color-white);
 }
@@ -439,12 +439,16 @@ input[type="checkbox"] {
     grid-template-columns: 1fr;
   }
 
+  .pill-toggle {
+    width: 100%;
+  }
+
   .pill-toggle button {
-    padding: 6px 14px;
-    font-size: 0.7rem;
+    padding: 8px 10px;
+    font-size: 0.75rem;
   }
 
   .dropzone {
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
   }
 }

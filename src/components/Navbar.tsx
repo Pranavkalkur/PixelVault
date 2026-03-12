@@ -15,14 +15,14 @@ const modes: { value: AppMode; label: string }[] = [
 
 const Navbar: React.FC<NavbarProps> = ({ mode, onModeChange }) => (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-black">
-        <div className="flex flex-col sm:grid sm:grid-cols-[1fr_auto_1fr] items-center max-w-7xl mx-auto px-4 sm:px-8 py-3 sm:py-4 gap-4 sm:gap-0">
+        <div className="flex flex-col sm:flex-row justify-between items-center max-w-5xl mx-auto px-4 sm:px-8 py-3 gap-3 sm:gap-0">
             {/* ── Col 1: Brand (left) ── */}
-            <div className="select-none flex items-center gap-2">
+            <div className="select-none flex items-center gap-2 sm:flex-1">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 40 40"
                     fill="none"
-                    className="w-6 h-6 text-black"
+                    className="w-5 h-5 sm:w-6 sm:h-6 text-black"
                 >
                     <path
                         d="M4 20 L20 6 L36 20 L20 34 Z"
@@ -32,17 +32,17 @@ const Navbar: React.FC<NavbarProps> = ({ mode, onModeChange }) => (
                     />
                     <rect x="16" y="16" width="8" height="8" fill="currentColor" />
                 </svg>
-                <span className="text-xl font-black tracking-[-0.04em] text-black lowercase">
+                <span className="text-lg sm:text-xl font-black tracking-[-0.04em] text-black lowercase">
                     pixelvault
                 </span>
             </div>
 
             {/* ── Col 2: Mode toggle (center) ── */}
-            <nav className="pill-toggle">
+            <nav className="pill-toggle flex flex-wrap justify-center flex-shrink-0 w-full sm:w-auto mt-1 sm:mt-0">
                 {modes.map((m) => (
                     <button
                         key={m.value}
-                        className={mode === m.value ? 'active' : ''}
+                        className={mode === m.value ? 'active flex-1 sm:flex-none' : 'flex-1 sm:flex-none'}
                         onClick={() => onModeChange(m.value)}
                     >
                         {m.label}
@@ -51,7 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({ mode, onModeChange }) => (
             </nav>
 
             {/* ── Col 3: Empty spacer (right) ── */}
-            <div />
+            <div className="hidden sm:block sm:flex-1" />
         </div>
     </header>
 );
