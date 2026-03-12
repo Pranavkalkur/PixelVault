@@ -138,18 +138,9 @@ export function deserialize(bits: Uint8Array): DeserializedPayload {
     const filename = new TextDecoder().decode(bytes.slice(offset, offset + filenameLen));
     offset += filenameLen;
 
-    // Find delimiter to determine ciphertext end
-    const delimStr = new TextDecoder().decode(DELIMITER);
-    const fullStr = new TextDecoder().decode(bytes.slice(offset));
-    const delimIdx = fullStr.indexOf(delimStr);
-
-    let ciphertext: ArrayBuffer;
-    if (delimIdx >= 0) {
-        ciphertext = bytes.slice(offset, offset + delimIdx).buffer;
-    } else {
-        // Fallback: use everything remaining
-        ciphertext = bytes.slice(offset).buffer;
-    }
+    // The steganography layer already strips the EOF delimiter from the end of the bit stream.
+    // What remains after the metadata is exactly the AES ciphertext.
+    const ciphertext = bytes.slice(offset).buffer;
 
     return { type, filename, ciphertext, iv, salt };
 }
