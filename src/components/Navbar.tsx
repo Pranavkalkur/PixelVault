@@ -26,7 +26,21 @@ const Navbar: React.FC<NavbarProps> = ({ mode, onModeChange }) => (
             }}
         >
             {/* ── Col 1: Brand (left) ── */}
-            <div className="select-none">
+            <div className="select-none flex items-center gap-2">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 40 40"
+                    fill="none"
+                    className="w-6 h-6 text-black"
+                >
+                    <path
+                        d="M4 20 L20 6 L36 20 L20 34 Z"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinejoin="miter"
+                    />
+                    <rect x="16" y="16" width="8" height="8" fill="currentColor" />
+                </svg>
                 <span className="text-xl font-black tracking-[-0.04em] text-black lowercase">
                     pixelvault
                 </span>
